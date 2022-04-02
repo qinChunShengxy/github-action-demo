@@ -1,3 +1,4 @@
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -5,4 +6,9 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   base: './', // 设置打包路径
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src') // 设置 `@` 指向 `src` 目录
+    }
+  },
 })

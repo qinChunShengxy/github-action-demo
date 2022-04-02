@@ -1,11 +1,5 @@
-<template>
-  axios
-</template>
+<template>axios</template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

@@ -9,7 +9,7 @@ const userStore = defineStore('main', {
   },
   getters: {
     getCount(state) {
-      console.log('getter被调用');
+      console.log('getter被调用')
       return `${state.msg} ---- ${state.count}`
     }
   },

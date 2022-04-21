@@ -7,7 +7,8 @@ const server = axios.create({
 })
 
 server.interceptors.request.use(
-  (config) => {
+  (res) => {
+    const config = res
     const token = 'abc'
     if (token) {
       config.headers.token = token

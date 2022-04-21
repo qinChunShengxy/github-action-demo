@@ -3,6 +3,9 @@ module.exports = {
     browser: true,
     es2021: true
   },
+  globals: {
+    config: true
+  },
   settings: {
     'import/resolver': {
       node: {
@@ -22,7 +25,9 @@ module.exports = {
   },
   plugins: ['vue'],
   rules: {
-    'vue/multi-word-component-names': 0, // 组件名为multi-word,关闭
+    'no-console': 'off',
+    'no-restricted-syntax': 'off',
+    'vue/multi-word-component-names': 'off', // 组件名为multi-word,关闭
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/extensions': [
       'error',

@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
+    'vue/setup-compoler-macros': true  // 'defineProps' and 'defineEmits' generate no-undef warnings
   },
   globals: {
     config: true

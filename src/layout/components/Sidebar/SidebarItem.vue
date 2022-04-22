@@ -12,11 +12,7 @@
           :index="resolvePath(obj.onlyOneChild.path)"
           :class="['sidebar-item--menu', { 'submenu-title-noDropdown': !isNest }]"
         >
-          <!-- <img
-            class="router-icon"
-            v-if="obj.onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
-            :src="setRouteIcon(item)"
-          /> -->
+          <svg-icon :icon-class="obj.onlyOneChild.meta.icon" />
           <span class="router-title">{{ obj.onlyOneChild.meta.title }}</span>
         </el-menu-item>
       </app-link>
@@ -24,11 +20,7 @@
 
     <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template #title v-if="item.meta">
-        <!-- <img
-            class="router-icon"
-            v-if="item.meta && item.meta.icon"
-            :src="setRouteIcon(item)"
-          /> -->
+        <svg-icon :icon-class="item.meta.icon" />
         <span class="router-title">{{ item.meta.title }}</span>
       </template>
       <sidebar-item
@@ -98,9 +90,5 @@ const resolvePath = (routePath) => {
     return props.basePath
   }
   return path.resolve(props.basePath, routePath)
-}
-
-const setRouteIcon = (item) => {
-  return `/img/routerIcon/${obj.onlyOneChild.meta.icon || (item.meta && item.meta.icon)}.png`
 }
 </script>

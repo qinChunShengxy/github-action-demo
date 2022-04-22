@@ -7,7 +7,7 @@
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <User class="svg-icon" />
+          <svg-icon icon-class="user" />
         </span>
         <el-input
           ref="username"
@@ -20,7 +20,7 @@
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <Lock class="svg-icon" />
+          <svg-icon icon-class="password" />
         </span>
         <el-input
           :key="passwordType"
@@ -50,7 +50,6 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { User, Lock } from '@element-plus/icons-vue'
 import { ref, toRefs, reactive, nextTick } from 'vue'
 import { validUsername } from '@/utils/validate'
 

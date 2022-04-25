@@ -12,7 +12,7 @@
           :index="resolvePath(obj.onlyOneChild.path)"
           :class="['sidebar-item--menu', { 'submenu-title-noDropdown': !isNest }]"
         >
-          <svg-icon :icon-class="obj.onlyOneChild.meta.icon" />
+          <svg-icon v-if="obj.onlyOneChild.meta.icon" :icon-class="obj.onlyOneChild.meta.icon" />
           <span class="router-title">{{ obj.onlyOneChild.meta.title }}</span>
         </el-menu-item>
       </app-link>
@@ -20,7 +20,7 @@
 
     <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template #title v-if="item.meta">
-        <svg-icon :icon-class="item.meta.icon" />
+        <svg-icon v-if="item.meta.icon" :icon-class="item.meta.icon" />
         <span class="router-title">{{ item.meta.title }}</span>
       </template>
       <sidebar-item

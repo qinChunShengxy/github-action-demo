@@ -33,7 +33,7 @@ const toggleSideBar = () => {}
 
 <style lang="scss" scoped>
 .navbar {
-  height: 65px;
+  height: 50px;
   overflow: hidden;
   position: relative;
   // display: flex;

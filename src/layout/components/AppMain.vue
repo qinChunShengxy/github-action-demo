@@ -18,8 +18,8 @@ const key = computed(() => route.path)
 
 <style scoped>
 .app-main {
-  /*65px = navbar  */
-  height: calc(100vh - 65px);
+  /*50px = navbar  */
+  height: calc(100vh - 50px);
   width: 100%;
   padding: 0;
   position: relative;

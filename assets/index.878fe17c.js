@@ -1,1 +1,0 @@
-import{_ as a}from"./index.ff89d240.js";import{o,d as s,p as t,k as _,l as d}from"./vendor.2adac2d2.js";const c={},r=e=>(t("data-v-30a5b309"),e=e(),_(),e),n={class:"dashboard-container"},p=r(()=>d("div",{class:"dashboard-text"},"name: dashboard",-1)),i=[p];function h(e,l){return o(),s("div",n,i)}var m=a(c,[["render",h],["__scopeId","data-v-30a5b309"]]);export{m as default};

@@ -1,1 +1,0 @@
-import{_ as t}from"./index.ff89d240.js";import{r as o,o as n,d as r,e as a}from"./vendor.2adac2d2.js";const s={},c={style:{padding:"30px"}};function l(_,d){const e=o("el-alert");return n(),r("div",c,[a(e,{closable:!1,title:"menu 1-2-1",type:"warning"})])}var m=t(s,[["render",l]]);export{m as default};

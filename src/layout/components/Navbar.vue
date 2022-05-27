@@ -1,6 +1,11 @@
 <template>
   <div class="navbar">
-    <hamburger id="hamburger-container" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <hamburger
+      id="hamburger-container"
+      class="hamburger-container"
+      :is-active="sidebar"
+      @toggleClick="toggleSideBar"
+    />
 
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
     <div class="right-menu">
@@ -17,18 +22,25 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { computed } from 'vue'
+import { appStore } from '@/store/app'
 import { useRouter } from 'vue-router'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
 
+const store = appStore()
 const router = useRouter()
 const logout = async () => {
-  // await store.dispatch('user/logout')
   router.push('/login')
 }
 
-const toggleSideBar = () => {}
+const sidebar = computed(() => {
+  return store.sidebar.opened
+})
+
+const toggleSideBar = () => {
+  store.toggleSideBar()
+}
 </script>
 
 <style lang="scss" scoped>
@@ -64,12 +76,13 @@ const toggleSideBar = () => {}
   }
 
   .right-menu {
-    // color: #fff;
     float: right;
-    display: flex;
-    align-items: center;
     height: 100%;
-    padding-right: 25px;
+    line-height: 50px;
+
+    &:focus {
+      outline: none;
+    }
     &__user {
       display: flex;
       align-items: center;

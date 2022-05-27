@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!item.hidden" class="sidebar-item">
+  <div v-if="!item.hidden">
     <template
       v-if="
         hasOneShowingChild(item, item.children) &&
@@ -7,21 +7,20 @@
         !item.alwaysShow
       "
     >
-      <app-link v-if="obj.onlyOneChild.meta" :to="resolvePath(obj.onlyOneChild.path)">
-        <el-menu-item
-          :index="resolvePath(obj.onlyOneChild.path)"
-          :class="['sidebar-item--menu', { 'submenu-title-noDropdown': !isNest }]"
-        >
+      <!-- <app-link v-if="obj.onlyOneChild.meta" :to="resolvePath(obj.onlyOneChild.path)"> -->
+        <el-menu-item v-if="obj.onlyOneChild.meta" :index="resolvePath(obj.onlyOneChild.path)">
           <svg-icon v-if="obj.onlyOneChild.meta.icon" :icon-class="obj.onlyOneChild.meta.icon" />
-          <span class="router-title">{{ obj.onlyOneChild.meta.title }}</span>
+          <!-- <el-icon><icon-menu /></el-icon> -->
+          <template #title>{{ obj.onlyOneChild.meta.title }}</template>
         </el-menu-item>
-      </app-link>
+      <!-- </app-link> -->
     </template>
 
-    <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+    <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)">
       <template #title v-if="item.meta">
         <svg-icon v-if="item.meta.icon" :icon-class="item.meta.icon" />
-        <span class="router-title">{{ item.meta.title }}</span>
+        <!-- <el-icon><icon-menu /></el-icon> -->
+        <span>{{ item.meta.title }}</span>
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -36,6 +35,7 @@
 </template>
 
 <script setup>
+import { Document, Menu as IconMenu, Location, Setting } from '@element-plus/icons-vue'
 import path from 'path-browserify'
 import { reactive } from 'vue'
 import AppLink from './Link.vue'

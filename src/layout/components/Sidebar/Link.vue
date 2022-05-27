@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, markRaw } from 'vue'
 import { isExternal } from '@/utils/validate'
 
 const props = defineProps({
@@ -17,12 +17,12 @@ const props = defineProps({
 const hasExternal = computed(() => {
   return isExternal(props.to)
 })
-const type = computed(() => {
+const type = markRaw(computed(() => {
   if (hasExternal.value) {
     return 'a'
   }
   return 'router-link'
-})
+}))
 const linkProps = (to) => {
   if (hasExternal.value) {
     return {

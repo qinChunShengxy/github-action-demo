@@ -67,7 +67,7 @@ export const tagsStore = defineStore('tagsView', {
       }
     },
 
-    DEL_ALL_VISITED_VIEWS: (state) => {
+    DEL_ALL_VISITED_VIEWS(state) {
       // keep affix tags
       const affixTags = state.visitedViews.filter((tag) => tag.meta.affix)
       state.visitedViews = affixTags

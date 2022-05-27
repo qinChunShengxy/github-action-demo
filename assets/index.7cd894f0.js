@@ -1,0 +1,1 @@
+import{_ as a}from"./index.7f822230.js";import{o,i as s,t,v as _,j as d}from"./vendor.17b7f5bc.js";const c={},r=e=>(t("data-v-30a5b309"),e=e(),_(),e),n={class:"dashboard-container"},i=r(()=>d("div",{class:"dashboard-text"},"name: dashboard",-1)),p=[i];function h(e,v){return o(),s("div",n,p)}var m=a(c,[["render",h],["__scopeId","data-v-30a5b309"]]);export{m as default};

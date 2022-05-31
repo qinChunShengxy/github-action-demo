@@ -11,7 +11,7 @@
     <div class="right-menu">
       <div class="right-menu__user">
         <img src="@/assets/default_user.png" />
-        <span>张无忌</span>
+        <span>admin</span>
       </div>
       <div class="right-menu__out" @click="logout">
         <i class="el-icon-switch-button" />
@@ -48,13 +48,6 @@ const toggleSideBar = () => {
   height: 50px;
   overflow: hidden;
   position: relative;
-  // display: flex;
-  // padding: 0 20px;
-  // justify-content: space-between;
-  // background-image: url('@/assets/navbar_bg.png');
-  // background-size: cover;
-  // background-position: center center;
-  // border-bottom: 1px solid #2f96e1;
   box-sizing: border-box;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
@@ -77,8 +70,10 @@ const toggleSideBar = () => {
 
   .right-menu {
     float: right;
+    display: flex;
     height: 100%;
     line-height: 50px;
+    padding-right: 20px;
 
     &:focus {
       outline: none;

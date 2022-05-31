@@ -96,13 +96,8 @@ const showPwd = () => {
 const handleLogin = () => {
   formRef.value.validate(async (valid) => {
     if (valid) {
+      loading.value = true
       try {
-        loading.value = true
-        // const data = await store.dispatch('user/login', state.loginForm)
-        // if (data.code !== 200) {
-        //   loading.value = false
-        //   return
-        // }
         setTimeout(() => {
           loading.value = false
           router.push('/')
@@ -135,6 +130,12 @@ $cursor: #fff;
     display: inline-block;
     height: 47px;
     width: 85%;
+    &__wrapper {
+      width: 100%;
+      padding: 0;
+      box-shadow: none;
+      background-color: transparent;
+    }
 
     input {
       background: transparent;

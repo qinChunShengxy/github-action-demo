@@ -6,6 +6,17 @@ import { getToken } from '@/utils/auth'
 
 const routes = [
   {
+    path: '/redirect', // tags refresh
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index.vue')
+      }
+    ]
+  },
+  {
     path: '/login',
     component: () => import('@/views/login/Login.vue'),
     hidden: true

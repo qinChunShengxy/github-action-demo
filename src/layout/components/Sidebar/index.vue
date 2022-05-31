@@ -3,8 +3,7 @@
     <logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-      router
-        class="el-menu-vertical-demo"
+        class="sidebar-menu"
         :default-active="activeMenu"
         :collapse="isCollapse"
         :background-color="variable.menuBg"
@@ -19,56 +18,11 @@
           :base-path="route.path"
         />
       </el-menu>
-      <!-- <el-menu
-    class="el-menu-vertical-demo"
-    :collapse="isCollapse"
-    menu-trigger="click"
-        :background-color="variable.menuBg"
-        :text-color="variable.menuText"
-        :active-text-color="variable.menuActiveText"
-  >
-    <el-sub-menu index="1">
-      <template #title>
-        <el-icon><location /></el-icon>
-        <span>Navigator One</span>
-      </template>
-      <el-menu-item-group>
-        <template #title><span>Group One</span></template>
-        <el-menu-item index="1-1">item one</el-menu-item>
-        <el-menu-item index="1-2">item two</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="Group Two">
-        <el-menu-item index="1-3">item three</el-menu-item>
-      </el-menu-item-group>
-      <el-sub-menu index="1-4">
-        <template #title><span>item four</span></template>
-        <el-menu-item index="1-4-1">item one</el-menu-item>
-      </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="2">
-      <el-icon><icon-menu /></el-icon>
-      <template #title>Navigator Two</template>
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-      <el-icon><document /></el-icon>
-      <template #title>Navigator Three</template>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <el-icon><setting /></el-icon>
-      <template #title>Navigator Four</template>
-    </el-menu-item>
-  </el-menu> -->
     </el-scrollbar>
   </div>
 </template>
 
 <script setup>
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Logo from './Logo.vue'
@@ -82,7 +36,7 @@ const settings = settingsStore()
 const route = useRoute()
 const router = useRouter()
 const routes = computed(() => {
-  return router.options.routes.filter(v=> !v.hidden)
+  return router.options.routes
 })
 const activeMenu = computed(() => {
   const { meta, path } = route
@@ -93,10 +47,10 @@ const activeMenu = computed(() => {
   return path
 })
 
-const showLogo = computed(()=> {
+const showLogo = computed(() => {
   return settings.sidebarLogo
 })
-const isCollapse = computed(()=> {
+const isCollapse = computed(() => {
   return !app.sidebar.opened
 })
 const variable = computed(() => {
@@ -105,7 +59,7 @@ const variable = computed(() => {
 </script>
 
 <style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
+.sidebar-menu:not(.el-menu--collapse) {
   width: 210px;
 }
 </style>

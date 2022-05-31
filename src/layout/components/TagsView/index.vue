@@ -1,6 +1,11 @@
 <template>
   <div id="tags-view-container" class="tags-view-container">
-    <scroll-pane ref="scrollPane" class="tags-view-wrapper" @scroll="handleScroll" :tagList="tagList">
+    <scroll-pane
+      ref="scrollPane"
+      class="tags-view-wrapper"
+      @scroll="handleScroll"
+      :tagList="tagList"
+    >
       <router-link
         v-for="tag in visitedViews"
         :ref="setTagRef"
@@ -43,7 +48,7 @@ const scrollPane = ref(null)
 const route = useRoute()
 const router = useRouter()
 const store = tagsStore()
-const tagList = ref([])  //roter-link dom array
+const tagList = ref([]) //roter-link dom array
 const data = reactive({
   top: 0,
   left: 0,
@@ -84,15 +89,16 @@ onMounted(() => {
   addTags()
 })
 
-onBeforeUpdate(()=> { //每次更新清空实例
+onBeforeUpdate(() => {
+  //每次更新清空实例
   tagList.value = []
 })
 
-const setTagRef = (el)=> {
-  if(el) tagList.value.push(el)
+const setTagRef = (el) => {
+  if (el) tagList.value.push(el)
 }
-const isActive = (route) => {
-  return route.path === route.path
+const isActive = (obj) => {
+  return obj.path === route.path
 }
 const isAffix = (tag) => {
   return tag.meta && tag.meta.affix
@@ -138,7 +144,7 @@ const moveToCurrentTag = () => {
   nextTick(() => {
     for (const tag of tagList.value) {
       if (tag.to.path === route.path) {
-        scrollPane.value.moveToTarget(tag)
+        if (scrollPane.value) scrollPane.value.moveToTarget(tag)
         // when query is different then update
         if (tag.to.fullPath !== route.fullPath) {
           store.updateVisitedView(route)

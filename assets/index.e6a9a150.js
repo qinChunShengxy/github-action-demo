@@ -1,0 +1,1 @@
+import{a0 as a}from"./vendor.8e572abc.js";const o={created(){const{params:r,query:t}=this.$route,{path:e}=r;this.$router.replace({path:"/"+e,query:t})},render(){return a("div",{})}};export{o as default};

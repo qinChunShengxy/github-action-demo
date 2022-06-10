@@ -22,5 +22,7 @@ const config = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
+  sidebarLogo: false,
+  SERVERIP: '127.0.0.1',
+  SERVERPORT: '4523'
 }

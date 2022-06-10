@@ -7,7 +7,14 @@ import App from './App.vue'
 import router from './router/index'
 import 'virtual:svg-icons-register'
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import Pagination from '@/components/Pagination/index.vue'
 
 const app = createApp(App)
 
-app.use(ElementPlus).use(router).use(createPinia()).component('svg-icon', SvgIcon).mount('#app')
+app
+  .use(ElementPlus)
+  .use(router)
+  .use(createPinia())
+  .component('svg-icon', SvgIcon)
+  .component('Pagination', Pagination)
+  .mount('#app')

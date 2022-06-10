@@ -1,18 +1,19 @@
 import axios from 'axios'
-import { ElMessage } from 'element-plus'
+import { userStore } from '@/store/user'
+import { getToken } from '@/utils/auth'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
-const server = axios.create({
+// 使用apifox 模拟接口数据
+const service = axios.create({
+  // baseURL: `http://${config.SERVERIP}:${config.SERVERPORT}/mock/1059268`,
   baseURL: '',
   timeout: 60000
 })
 
-server.interceptors.request.use(
-  (res) => {
-    const config = res
-    const token = 'abc'
-    if (token) {
-      config.headers.token = token
-    }
+service.interceptors.request.use(
+  (config) => {
+    const token = getToken()
+    // config.headers.authorization = 'Bearer vue3-admin'
     return config
   },
   (error) => {
@@ -20,17 +21,33 @@ server.interceptors.request.use(
   }
 )
 
-server.interceptors.response.use(
+service.interceptors.response.use(
   (response) => {
-    if (response.data.code === 403) {
-      ElMessage.error('登录用户会话过期,请重新登录!')
+    if (response.code === 403) {
+      ElMessageBox.confirm('登录用户会话过期,请重新登录!', '提示', {
+        closeOnPressEscape: false,
+        closeOnClickModal: false,
+        showClose: false,
+        showCancelButton: false,
+        confirmButtonText: '重新登录',
+        type: 'warning'
+      }).then(() => {
+        userStore().logout().then(()=> {
+          location.reload() // 为了重新实例化vue-router对象 避免bug
+        })
+      })
+      return Promise.reject(new Error('error'))
     }
     return response
   },
   (error) => {
-    ElMessage.error(error)
+    ElMessage({
+      message: '网络请求超时——' + error.message,
+      type: 'error',
+      duration: 5 * 1000
+    })
     return Promise.reject(error)
   }
 )
 
-export default server
+export default service

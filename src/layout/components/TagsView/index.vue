@@ -68,7 +68,6 @@ watch(
   () => route.name,
   () => {
     // route是响应式数据,监听任何一个值都可以
-    console.log('路由变化')
     addTags()
     moveToCurrentTag()
   }

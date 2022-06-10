@@ -24,6 +24,7 @@
 <script setup>
 import { computed } from 'vue'
 import { appStore } from '@/store/app'
+import { userStore} from '@/store/user'
 import { useRouter } from 'vue-router'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
@@ -31,7 +32,9 @@ import Hamburger from '@/components/Hamburger/index.vue'
 const store = appStore()
 const router = useRouter()
 const logout = async () => {
-  router.push('/login')
+  userStore().logout().then(()=> {
+    router.push('/login')
+  })
 }
 
 const sidebar = computed(() => {

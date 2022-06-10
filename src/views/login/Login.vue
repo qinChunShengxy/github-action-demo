@@ -49,11 +49,15 @@
 </template>
 
 <script setup>
+import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
+import { userStore } from '@/store/user'
 import { ref, toRefs, reactive, nextTick } from 'vue'
 import { validUsername } from '@/utils/validate'
 
 const router = useRouter()
+const store = userStore()
+
 const validateUsername = (rule, value, callback) => {
   if (!validUsername(value)) {
     callback(new Error('请输入正确的用户名'))
@@ -99,9 +103,15 @@ const handleLogin = () => {
       loading.value = true
       try {
         setTimeout(() => {
-          loading.value = false
           router.push('/')
         }, 1000)
+        /* const msg = await store.userLogin(state.loginForm)
+        if (msg.data.code === 200) {
+          router.push('/')
+        } else {
+          ElMessage.warning(msg.message)
+        } */
+        loading.value = false
       } catch (e) {
         console.log(e)
         loading.value = false
